@@ -1,7 +1,7 @@
 # 📱 JBG Reclamos
 
-Aplicación Android desarrollada para la asignatura **Desarrollo de Aplicaciones Móviles**.  
-Permite a los usuarios **crear, visualizar y gestionar reclamos** de forma simple e intuitiva, utilizando tecnologías modernas del ecosistema Android.
+Aplicación Android desarrollada para la asignatura **Desarrollo de Aplicaciones Móviles (DSY1105)**.  
+Permite a los usuarios **crear, visualizar y gestionar reclamos**, incorporando evidencia fotográfica y ubicación GPS, utilizando tecnologías modernas del ecosistema Android.
 
 ---
 
@@ -15,107 +15,141 @@ Permite a los usuarios **crear, visualizar y gestionar reclamos** de forma simpl
 
 ## 🧩 Descripción del Proyecto
 
-**JBG Reclamos** es una aplicación móvil Android desarrollada en **Kotlin** usando **Jetpack Compose** como framework de UI.
+**JBG Reclamos** es una aplicación móvil Android desarrollada en **Kotlin**, utilizando **Jetpack Compose** como framework principal de interfaz gráfica.
 
-La app permite:
-- Registrar reclamos asociados a un usuario
-- Adjuntar evidencia (foto)
-- Obtener ubicación GPS
+La aplicación permite a los usuarios:
+- Crear reclamos asociados a su correo
+- Adjuntar evidencia mediante fotografías
+- Obtener y mostrar la ubicación actual
 - Visualizar reclamos en una lista
 - Eliminar reclamos existentes
 
-Toda la información se almacena localmente usando **Room (SQLite)**, siguiendo el patrón **MVVM**.
+Toda la información se almacena localmente usando **Room (SQLite)**, siguiendo una arquitectura **MVVM**, asegurando una correcta separación de responsabilidades.
 
 ---
 
 ## 🛠️ Tecnologías Utilizadas
 
-### 📱 Frontend (Android)
+### 📱 Desarrollo Android
 - **Kotlin**
 - **Jetpack Compose**
-- **Material 3**
+- **Material Design 3**
+- **Navigation Compose**
 - **StateFlow**
 - **ViewModel**
-- **Navigation Compose**
 
 ### 💾 Persistencia de Datos
 - **Room (SQLite)**
-- DAO + Entity + Database
-- DbProvider
+  - Entity
+  - DAO
+  - Database
+- **DbProvider**
 
 ### 📍 Sensores y Servicios
-- Cámara (Camera Intent)
-- GPS (FusedLocationProvider)
-- Geocodificación con OpenStreetMap (Nominatim)
+- **Cámara** (Intents nativos)
+- **GPS** (FusedLocationProvider)
+- **Geocodificación** con OpenStreetMap (Nominatim)
+- **OSMDroid** para visualización de mapas
 
 ### 🧪 Testing
 - **JUnit**
-- **Coroutines Test**
-- **Tests unitarios de ViewModel**
-- **Tests instrumentados (AndroidTest)**
+- **kotlinx-coroutines-test**
+- **Tests unitarios**
+- **Tests instrumentados (androidTest)**
 
 ---
 
 ## ✨ Funcionalidades Principales
 
-- ✅ Inicio de sesión (correo)
-- ✅ Crear reclamos
-- ✅ Validaciones de campos obligatorios
-- ✅ Adjuntar foto como evidencia
-- ✅ Obtener ubicación actual
-- ✅ Mostrar dirección a partir de coordenadas
-- ✅ Listar reclamos por usuario
-- ✅ Eliminar reclamos
-- ✅ Soporte modo oscuro / claro
-- ✅ Diseño moderno con Material 3
+- ✅ Registro e identificación por correo
+- ✅ Creación de reclamos
+- ✅ Validación de campos obligatorios
+- ✅ Adjuntar imagen como evidencia
+- ✅ Obtención de ubicación GPS
+- ✅ Conversión de coordenadas a dirección
+- ✅ Visualización de reclamos por usuario
+- ✅ Eliminación de reclamos
+- ✅ Diseño responsivo
+- ✅ Soporte para modo claro y modo oscuro
+- ✅ Interfaz moderna con Material 3
 
 ---
 
-## 🧱 Arquitectura
+## 🧱 Arquitectura del Proyecto
 
-El proyecto sigue el patrón **MVVM**:
+El proyecto sigue el patrón **MVVM (Model - View - ViewModel)**:
 
-UI (Compose Screens)
+UI (Jetpack Compose)
 │
 ├── ViewModel
 │ ├── StateFlow
 │ └── Lógica de negocio
 │
-├── Room
+├── Data
 │ ├── Entity
 │ ├── DAO
-│ └── Database
+│ └── Room Database
 
-Separación clara entre:
-- UI
-- Lógica
-- Persistencia
+
+
+Esta arquitectura permite:
+- Código limpio y mantenible
+- Separación clara de responsabilidades
+- Facilidad para pruebas unitarias
 
 ---
 
-## 🧪 Pruebas
+## 🧪 Pruebas Implementadas
 
-Se implementaron pruebas para:
+Se desarrollaron pruebas para validar el correcto funcionamiento del sistema:
 
-- ViewModel (`ClaimsViewModelTest`)
-- Validación de creación de reclamos
-- Manejo de errores
-- Inserción de datos válidos
+### Tests Unitarios
+- `ClaimsViewModelTest`
+  - No permite crear reclamos con campos vacíos
+  - Permite crear reclamos con datos válidos
+  - Verifica manejo de errores
 
-Herramientas usadas:
-- JUnit
-- kotlinx-coroutines-test
+### Tests Instrumentados
+- Verificación del contexto Android
+- Inicialización correcta del ViewModel
+
+Herramientas utilizadas:
+- **JUnit**
+- **kotlinx-coroutines-test**
 
 ---
 
 ## ▶️ Cómo Ejecutar el Proyecto
 
-### Requisitos
-- Android Studio (última versión)
+### 🔧 Requisitos
+- Android Studio (última versión recomendada)
 - JDK 17
-- Dispositivo físico o emulador
+- Dispositivo físico o emulador Android (API 26+)
 
-### Pasos
+### 🚀 Pasos
+
 1. Clonar el repositorio
    ```bash
    git clone https://github.com/bxnjjaaa23/JBG_RECLAMOS.git
+   
+2. Abrir el proyecto en Android Studio
+
+3. Sincronizar Gradle
+   File → Sync Project with Gradle Files
+   
+4. Ejecutar la aplicación en un dispositivo o emulador
+   
+##Estado del Proyecto
+
+✅ Funcional
+✅ Arquitectura MVVM
+✅ Persistencia local con Room
+✅ Pruebas implementadas
+✅ Diseño moderno y responsivo
+
+##📄 Licencia
+
+Proyecto desarrollado con fines académicos para la asignatura Desarrollo de Aplicaciones Móviles.
+
+📱 JBG Reclamos — Proyecto Android
+DuocUc • 2025
