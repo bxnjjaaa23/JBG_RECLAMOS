@@ -8,13 +8,11 @@ import retrofit2.http.POST
 
 interface AuthApi {
 
-    // ✅ MISMA RUTA QUE POSTMAN
     @POST("auth/register")
     suspend fun register(
         @Body request: RegisterRequest
     )
 
-    // ✅ MISMA RUTA QUE POSTMAN
     @POST("auth/login")
     suspend fun login(
         @Body request: LoginRequest

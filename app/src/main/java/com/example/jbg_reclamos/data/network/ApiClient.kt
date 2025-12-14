@@ -8,7 +8,6 @@ import java.util.concurrent.TimeUnit
 
 object ApiClient {
 
-    // ✅ IP + PUERTO EXACTO DE POSTMAN
     private const val BASE_URL = "http://3.213.231.73:3002/"
 
     private val logging = HttpLoggingInterceptor().apply {
