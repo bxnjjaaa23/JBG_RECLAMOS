@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.jbg_reclamos.viewmodel.ClaimsViewModel
 import com.google.android.gms.location.LocationServices
@@ -21,10 +22,19 @@ import com.google.android.gms.location.LocationServices
 @Composable
 fun CreateClaimScreen(email: String) {
 
-    val vm: ClaimsViewModel = viewModel()
-    val error by vm.error.collectAsState()
-
+    // ✅ CONTEXT
     val context = LocalContext.current
+
+    // ✅ VIEWMODEL CON FACTORY (OBLIGATORIO)
+    val vm: ClaimsViewModel = viewModel(
+        factory = object : ViewModelProvider.Factory {
+            override fun <T : androidx.lifecycle.ViewModel> create(modelClass: Class<T>): T {
+                return ClaimsViewModel(context.applicationContext) as T
+            }
+        }
+    )
+
+    val error by vm.error.collectAsState()
     val scrollState = rememberScrollState()
 
     var product by remember { mutableStateOf("") }
@@ -63,7 +73,7 @@ fun CreateClaimScreen(email: String) {
         }
     }
 
-    // 📍 UBICACIÓN (SIN LatLng)
+    // 📍 UBICACIÓN
     var latitude by remember { mutableStateOf<Double?>(null) }
     var longitude by remember { mutableStateOf<Double?>(null) }
     var address by remember { mutableStateOf<String?>(null) }
@@ -194,7 +204,6 @@ fun CreateClaimScreen(email: String) {
             Text("Ubicación: $it")
         }
 
-        // 🗺️ MAPA OSMDROID
         if (latitude != null && longitude != null) {
             Spacer(Modifier.height(16.dp))
             Card(

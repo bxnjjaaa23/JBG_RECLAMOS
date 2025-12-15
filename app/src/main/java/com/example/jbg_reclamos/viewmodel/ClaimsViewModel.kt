@@ -1,7 +1,7 @@
 package com.example.jbg_reclamos.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import android.content.Context
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jbg_reclamos.data.local.ClaimDao
 import com.example.jbg_reclamos.data.local.ClaimEntity
@@ -11,9 +11,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class ClaimsViewModel(
-    app: Application,
-    private val dao: ClaimDao = DbProvider.get(app).claimDao()
-) : AndroidViewModel(app) {
+    context: Context
+) : ViewModel() {
+
+    private val dao: ClaimDao = DbProvider.get(context).claimDao()
 
     private val _claims = MutableStateFlow<List<ClaimEntity>>(emptyList())
     val claims: StateFlow<List<ClaimEntity>> = _claims
@@ -35,7 +36,6 @@ class ClaimsViewModel(
         imageUri: String?,
         address: String
     ) {
-        // 🔴 VALIDACIONES
         if (
             email.isBlank() ||
             product.isBlank() ||
@@ -47,7 +47,6 @@ class ClaimsViewModel(
             return
         }
 
-        // 🟢 LIMPIAR ERROR
         _error.value = null
 
         viewModelScope.launch {

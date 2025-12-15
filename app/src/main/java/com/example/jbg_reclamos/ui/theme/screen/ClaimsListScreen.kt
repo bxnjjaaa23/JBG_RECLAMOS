@@ -8,7 +8,9 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.jbg_reclamos.ui.components.ClaimCard
 import com.example.jbg_reclamos.viewmodel.ClaimsViewModel
@@ -16,10 +18,23 @@ import com.example.jbg_reclamos.viewmodel.ClaimsViewModel
 @Composable
 fun ClaimsListScreen(email: String) {
 
-    val vm: ClaimsViewModel = viewModel()
+    // ✅ CONTEXT
+    val context = LocalContext.current
+
+    // ✅ VIEWMODEL CON FACTORY (OBLIGATORIO)
+    val vm: ClaimsViewModel = viewModel(
+        factory = object : ViewModelProvider.Factory {
+            override fun <T : androidx.lifecycle.ViewModel> create(modelClass: Class<T>): T {
+                return ClaimsViewModel(context.applicationContext) as T
+            }
+        }
+    )
+
     val claims by vm.claims.collectAsState()
 
-    LaunchedEffect(Unit) { vm.load(email) }
+    LaunchedEffect(email) {
+        vm.load(email)
+    }
 
     Column(
         modifier = Modifier

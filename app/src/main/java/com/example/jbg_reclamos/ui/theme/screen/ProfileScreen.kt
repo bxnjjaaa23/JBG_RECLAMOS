@@ -1,4 +1,5 @@
-package com.example.jbg_reclamos.ui.screen
+package com.example.jbg_reclamos.ui.theme.screen
+
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -16,6 +17,5 @@ fun ProfileScreen(email: String, role: String, onLogout: () -> Unit) {
         Spacer(Modifier.height(16.dp))
         Button(onClick = onLogout) { Text("Cerrar sesión") }
         Spacer(Modifier.height(8.dp))
-        Text("Admin si tu email termina en @admin.cl")
     }
 }

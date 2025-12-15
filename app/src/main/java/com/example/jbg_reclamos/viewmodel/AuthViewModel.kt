@@ -81,6 +81,7 @@ class AuthViewModel(app: Application) : AndroidViewModel(app) {
                     )
                 )
 
+                // 👈 COMO ESTABA ANTES (SIN VALIDACIONES EXTRA)
                 session.save(
                     email = response.usuario.email,
                     token = response.token,
@@ -95,6 +96,9 @@ class AuthViewModel(app: Application) : AndroidViewModel(app) {
             }
         }
     }
+
+
+
 
 
     fun logout() {

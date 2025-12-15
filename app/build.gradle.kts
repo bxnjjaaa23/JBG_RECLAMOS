@@ -97,4 +97,8 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation("androidx.test.core:1.5.0")
     androidTestImplementation("androidx.room:room-testing:2.6.1")
+
+    //Iconos
+    implementation("androidx.compose.material:material-icons-extended")
+
 }

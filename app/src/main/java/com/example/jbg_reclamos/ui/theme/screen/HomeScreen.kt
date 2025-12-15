@@ -2,6 +2,8 @@ package com.example.jbg_reclamos.ui.screen
 
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import com.example.jbg_reclamos.ui.theme.screen.ProfileScreen
+
 
 @Composable
 fun HomeScreen(

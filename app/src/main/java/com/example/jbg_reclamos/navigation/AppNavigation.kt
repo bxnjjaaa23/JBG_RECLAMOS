@@ -5,8 +5,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.jbg_reclamos.data.local.SessionManager
 import com.example.jbg_reclamos.ui.screen.HomeScreen
-import com.example.jbg_reclamos.ui.screen.LoginScreen
-import com.example.jbg_reclamos.ui.screen.RegisterScreen
+import com.example.jbg_reclamos.ui.theme.screen.LoginScreen
+import com.example.jbg_reclamos.ui.theme.screen.RegisterScreen
 import com.example.jbg_reclamos.viewmodel.AuthViewModel
 import kotlinx.coroutines.flow.first
 
